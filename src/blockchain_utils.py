@@ -3,10 +3,10 @@ import json
 from Crypto.Hash import SHA256
 
 
-class BlockChainUtils:    
+class BlockChainUtils:        
     @staticmethod
     def hash(data):
-        dataString = json.dumps(data)
-        dataBytes = dataString.encode('utf-8')
-        dataHash = SHA256.new(dataBytes)
-        return dataHash
+        data_string = json.dumps(data)
+        data_bytes = data_string.encode('utf-8')
+        data_hash = SHA256.new(data_bytes)
+        return data_hash
