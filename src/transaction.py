@@ -1,7 +1,8 @@
-import uuid
 import time
+import uuid
 
-class Transaction():
+
+class Transaction:
 
     def __init__(self, senderPublicKey, receiverPublicKey, amount, transactionType):
         self.senderPublicKey = senderPublicKey
@@ -14,3 +15,6 @@ class Transaction():
 
     def toJson(self):
         return self.__dict__
+    
+    def sign(self, signature):
+        self.signature = signature
