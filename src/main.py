@@ -5,15 +5,12 @@ if __name__ == "__main__":
     sender = "sender"
     receiver = "receiver"
     amount = 1
-    transactionType = "TRANSFER"
-
-    transaction = Transaction(sender, receiver, amount, transactionType)
+    transaction_type = "TRANSFER"
 
     wallet = Wallet()
-    signature = wallet.sign(transaction.to_json())
-    transaction.sign(signature)
-
+    transaction = wallet.create_transaction(receiver, amount, transaction_type)
+    print(transaction.payload())
     is_signature_valid = Wallet.is_signature_valid(
-        transaction.payload(), signature, wallet.public_key()
+        transaction.payload(), transaction.signature, Wallet().public_key()
     )
     print(f"Is valid? {is_signature_valid}")
