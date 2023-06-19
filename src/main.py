@@ -1,4 +1,5 @@
 from transaction import Transaction
+from transaction_pool import TransactionPool
 from wallet import Wallet
 
 if __name__ == "__main__":
@@ -8,9 +9,14 @@ if __name__ == "__main__":
     transaction_type = "TRANSFER"
 
     wallet = Wallet()
+    pool = TransactionPool()
+
     transaction = wallet.create_transaction(receiver, amount, transaction_type)
-    print(transaction.payload())
-    is_signature_valid = Wallet.is_signature_valid(
-        transaction.payload(), transaction.signature, Wallet().public_key()
-    )
-    print(f"Is valid? {is_signature_valid}")
+
+    if pool.is_transaction_new(transaction):
+        pool.add_transaction(transaction)
+
+    if pool.is_transaction_new(transaction):
+        pool.add_transaction(transaction)
+
+    print(pool.transactions)
