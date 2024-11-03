@@ -1,3 +1,4 @@
+import copy
 import time
 
 
@@ -20,3 +21,11 @@ class Block:
         data["signature"] = self.signature
 
         return data
+
+    def payload(self):
+        json_repr = copy.deepcopy(self.to_json())
+        json_repr["signature"] = ""
+        return json_repr
+
+    def sign(self, signature):
+        self.signature = signature
