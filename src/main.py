@@ -1,3 +1,4 @@
+from block import Block
 from transaction import Transaction
 from transaction_pool import TransactionPool
 from wallet import Wallet
@@ -16,7 +17,6 @@ if __name__ == "__main__":
     if pool.is_transaction_new(transaction):
         pool.add_transaction(transaction)
 
-    if pool.is_transaction_new(transaction):
-        pool.add_transaction(transaction)
+    block = Block(pool.transactions, "last_hash_placholder", "forger_placeholder", 1)
 
-    print(pool.transactions)
+    print(block.to_json())
